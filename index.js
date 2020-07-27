@@ -1,12 +1,11 @@
 const env = require('dotenv').config().parsed;
 const TelegramBot = require('node-telegram-bot-api');
-const bot = new TelegramBot(env.telegramToken, {polling: false});
 const puppeteer = require('puppeteer-extra');
 const fs = require('fs');
 const CronJob = require('cron').CronJob;
-
-// add stealth plugin and use defaults (all evasion techniques)
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+
+const bot = new TelegramBot(env.telegramToken, {polling: false});
 puppeteer.use(StealthPlugin());
 
 const init = async () => {
@@ -42,6 +41,8 @@ const init = async () => {
 };
 
 init();
+
+console.log(env.cronRule);
 
 const job = new CronJob(env.cronRule, init, null, true);
 job.start();
