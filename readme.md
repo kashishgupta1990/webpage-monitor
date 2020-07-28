@@ -26,6 +26,3 @@ cronRule = */30 * * * *
 
 ```
 
-
-
-- This small programs allow you to
